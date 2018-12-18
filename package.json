@@ -3,6 +3,11 @@
     "displayName": "protogen",
     "description": "Tool for organising code generation of Google's protocol buffers across multiple projects",
     "version": "0.0.1",
+    "publisher": "zeeraw",
+    "repository": {
+        "type" : "git",
+        "url" : "https://github.com/zeeraw/protogen-vscode.git"
+    },
     "engines": {
         "vscode": "^1.30.0"
     },
