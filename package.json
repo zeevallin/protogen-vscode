@@ -2,7 +2,7 @@
     "name": "protogen",
     "displayName": "protogen",
     "description": "Tool for organising code generation of Google's protocol buffers across multiple projects",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "publisher": "zeeraw",
     "repository": {
         "type" : "git",
