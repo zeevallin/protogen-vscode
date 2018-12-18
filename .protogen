@@ -1,0 +1,13 @@
+// gRPC defintion for a game server registry
+source github.com/registry/game-servers
+
+output ./vendor/rpc
+
+language go {
+    path import
+    plugin grpc
+}
+
+generate services/games v1.0.1
+generate services/servers v3.0.0
+generate aggregators/game-servers master

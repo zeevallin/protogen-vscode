@@ -1,0 +1,25 @@
+{
+    "name": "protogen",
+    "displayName": "protogen",
+    "description": "Tool for organising code generation of Google's protocol buffers across multiple projects",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.30.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "protogen",
+            "aliases": ["Protogen", "protogen"],
+            "extensions": [".protogen"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "protogen",
+            "scopeName": "source.protogen",
+            "path": "./syntaxes/protogen.tmLanguage.json"
+        }]
+    }
+}

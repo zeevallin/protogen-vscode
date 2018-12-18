@@ -1,0 +1,200 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Protogen",
+	"comment": "Protogen configuration language",
+	"patterns": [
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#statements"
+		},
+		{
+			"include": "#keywords"
+		}
+	],
+	"repository": {
+		"comments": {
+			"patterns": [
+				{
+					"begin": "(?<!\\:)(\\/\\/.+)",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.comment.protogen"
+						}
+					},
+					"end": "$",
+					"name": "comment.line.double-slash.protogen"
+				}
+			]
+		},
+		"keywords": {
+			"patterns": [
+				{
+					"match": "\\bplugin\\b",
+					"name": "keyword.plugin.protogen"
+				},
+				{
+					"match": "\\bpath\\b",
+					"name": "keyword.path.protogen"
+				}
+			]
+		},
+		"statements": {
+			"patterns": [
+				{
+					"include": "#statement-source"
+				},
+				{
+					"include": "#statement-output"
+				},
+				{
+					"include": "#statement-language"
+				},
+				{
+					"include": "#statement-generate"
+				}
+			]
+		},
+		"statement-source": {
+			"patterns": [
+				{
+					"begin": "\\bsource\\b",
+					"beginCaptures": {
+						"0": {
+							"name": "keyword.source.protogen"
+						}
+					},
+					"end": "$",
+					"patterns": [
+						{
+							"include": "#identifier-path"
+						},
+						{
+							"include": "#identifier-url"
+						}
+					]
+				}
+			]
+		},
+		"statement-output": {
+			"patterns": [
+				{
+					"begin": "\\boutput\\b",
+					"beginCaptures": {
+						"0": {
+							"name": "keyword.output.protogen"
+						}
+					},
+					"end": "$",
+					"patterns": [
+						{
+							"include": "#identifier-path"
+						}
+					]
+				}
+			]
+		},
+		"statement-language": {
+			"patterns": [
+				{
+					"begin": "\\blanguage\\b",
+					"beginCaptures": {
+						"0": {
+							"name": "keyword.language.protogen"
+						}
+					},
+					"end": "$",
+					"patterns": [
+						{
+							"include": "#identifier-lang"
+						}
+					]
+				}
+			]
+		},
+		"statement-generate": {
+			"patterns": [
+				{
+					"comment": "Generate statement without a reference",
+					"match": "\\b(generate)\\s+([\/a-zA-Z0-9\\_\\-]+)(\\s+)?$",
+					"captures": {
+						"1": {
+							"name": "keyword.generate.protogen"
+						},
+						"2": {
+							"name": "variable.name.namespace.protogen"
+						}
+					}
+				},
+				{
+					"comment": "Generate statement with a version reference",
+					"match": "\\b(generate)\\s+([\/a-zA-Z0-9\\_\\-]+)\\s+(v[0-9\\.]+)(\\s+)?$",
+					"captures": {
+						"1": {
+							"name": "keyword.generate.protogen"
+						},
+						"2": {
+							"name": "variable.name.namespace.protogen"
+						},
+						"3": {
+							"name": "string.regexp.name.version.protogen"
+						}
+					}
+				},
+				{
+					"comment": "Generate statement with a branch reference",
+					"match": "\\b(generate)\\s+([\/a-zA-Z0-9\\_\\-]+)\\s+([\/a-zA-Z0-9\\_\\-]+)(\\s+)?$",
+					"captures": {
+						"1": {
+							"name": "keyword.generate.protogen"
+						},
+						"2": {
+							"name": "variable.name.namespace.protogen"
+						},
+						"3": {
+							"name": "meta.name.branch.protogen"
+						}
+					}
+				}
+			]
+		},
+		"identifier-lang": {
+			"patterns": [
+				{
+					"match": "\\b(\\S+)",
+					"captures": {
+						"0": {
+							"name": "entity.name.type.language.protogen"
+						}
+					}
+				}
+			]
+		},
+		"identifier-url": {
+			"patterns": [
+				{
+					"match": "\\s(?![\/(\\.\/)])(\\S+)",
+					"captures": {
+						"0": {
+							"name": "string.other.url.protogen"
+						}
+					}
+				}
+			]
+		},
+		"identifier-path": {
+			"patterns": [
+				{
+					"match": "\\s(?=[\/(\\.\/)])(\\S+)",
+					"captures": {
+						"0": {
+							"name": "string.other.path.protogen"
+						}
+					}
+				}
+			]
+		}
+	},
+	"scopeName": "source.protogen"
+}
